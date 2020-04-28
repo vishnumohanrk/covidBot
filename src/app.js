@@ -10,7 +10,9 @@ app.use(bodyParser.urlencoded({extended: true}))
 const port = process.env.PORT || 3000
 
 app.post('/whatsApp', (req,res) => {
-    
+    const msg = new twiml
+    msg.message('You Opted For Remainders. Reply Stop to Opt out.')
+    return res.send(msg.toString())
 })
 
 setInterval(() => {
