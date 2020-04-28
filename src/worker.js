@@ -11,6 +11,8 @@ const getOpted = () => {
     })
 }
 
+console.log('Worker Running')
+
 setInterval(() => {
     getOpted()
     .then(res => {
