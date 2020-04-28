@@ -39,6 +39,6 @@ setInterval(() => {
         })
     })
     .catch(e => console.log('Error --Get Opted'))
-}, 5000)
+}, 1800000)
 
 app.listen(port, () => console.log(`Running on PORT:${port}`))
