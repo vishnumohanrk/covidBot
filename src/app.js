@@ -8,7 +8,7 @@ const app = express()
 app.use(bodyParser.urlencoded({extended: true}))
 const port = process.env.PORT || 3000
 
-app.post('/whatsApp', async(req,res) => {
+app.post('/whatsApp', (req,res) => {
     console.log(req.body)
     const msg = new twiml
     msg.message('Hello')
