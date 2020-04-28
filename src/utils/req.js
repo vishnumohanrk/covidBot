@@ -3,7 +3,7 @@ const stateCodes = require('./stateCodes')
 
 const getStateStats = (state) => {
     return new Promise((resolve,reject) => {
-        const req = state.length == 2 ? state : stateCodes[state.replace(/\s+/g, '').toLowerCase()]
+        const req = state.length == 2 ? state.toUpperCase() : stateCodes[state.replace(/\s+/g, '').toLowerCase()]
         request.get({
             uri: 'https://api.covid19india.org/data.json',
             json: true,
