@@ -1,14 +1,15 @@
 {
   "name": "covidBot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Get Covid Stats From WhatsApp",
   "main": "src/app.js",
+  "repository": "https://github.com/vishnumohanrk/covidBot",
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["Covid19", "WhatsApp bot", "Corona Virus"],
+  "author": "Vishnumohan R K",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
