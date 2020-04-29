@@ -20,7 +20,6 @@ const getDistrictStats = (districtVal, stateVal) => {
     return new Promise((resolve, reject) => {
         const code = state.length == 2 ? state.toUpperCase() : stateCodes[state.replace(/\s+/g, '').toLowerCase()]
         const dist = district.replace(/\b\w/g, l => l.toUpperCase()) // https://stackoverflow.com/a/38530325
-        console.log(code, dist)
         request.get({
             uri: 'https://api.covid19india.org/v2/state_district_wise.json',
             json: true,
@@ -30,7 +29,15 @@ const getDistrictStats = (districtVal, stateVal) => {
     })
 }
 
-// getDistrictStats('coimbatore', 'tn').then(res => console.log(res)).catch(e => console.log(e))
-// getStateStats('India').then(res => console.log(res)).catch(E => console.log(E))
+const topN = (n) => {
+    return new Promise((resolve,reject) => {
+        request.get({
+            uri: 'https://api.covid19india.org/data.json',
+            json: true,
+        })
+        .then(res => resolve(res.statewise.slice(1,n+1)))
+        .catch(e =>reject(e))
+    })
+}
 
-module.exports = {getStateStats, getDistrictStats}
+module.exports = {getStateStats, getDistrictStats, topN}

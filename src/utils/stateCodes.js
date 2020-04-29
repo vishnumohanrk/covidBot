@@ -38,6 +38,8 @@ module.exports = {
     "uttarakhand": "UT",
     "westbengal": "WB",
     "india": "TT",
+    "all": "TT",
+    "ind": "TT",
     "total": "TT",
 }
 // ACCORDING TO https://api.covid19india.org/data.json
