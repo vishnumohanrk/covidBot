@@ -8,7 +8,11 @@
     "start": "node src/app.js",
     "dev": "nodemon src/app.js"
   },
-  "keywords": ["Covid19", "WhatsApp bot", "Corona Virus"],
+  "keywords": [
+    "Covid19",
+    "WhatsApp bot",
+    "Corona Virus"
+  ],
   "author": "Vishnumohan R K",
   "license": "ISC",
   "dependencies": {

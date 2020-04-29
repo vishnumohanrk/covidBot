@@ -10,6 +10,7 @@ https://wa.me/14155238886?text=join%20forest-manner
 <li>All, India to get entire Country Stats</li>
 <li>District, State name or state code separated by comma</li>
 <li>Top followed by a number</li>
+<li>Full State name or State Code followed by - to see first 20 districts stats of that state</li>
 <br>
 <p>Screenshots</p>
 

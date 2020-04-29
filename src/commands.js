@@ -21,6 +21,16 @@ const returnRes = async(q) => {
             return arr.toString()
         }
         return commands
+    } else if(q.toLowerCase().includes('-')){
+        const data = await utils.getAllDist(q.slice(0, q.toLowerCase().indexOf('-')))
+        const state = await utils.getStateStats(q.slice(0, q.toLowerCase().indexOf('-')))
+        if(data.length){
+            const arr = []
+            arr.push(`State: ${state[0].state}\nAS OF ${state[0].lastupdatedtime}\nRECOVERED: ${state[0].recovered}\nACTIVE: ${state[0].active}\nCONFIRMED: ${state[0].confirmed}\n`)
+            data.forEach(i => arr.push(`\nDistrict: ${i.district}\nRECOVERED: ${i.recovered}\nACTIVE: ${i.active}\nCONFIRMED: ${i.confirmed}\n`))
+            return arr.toString()
+        }
+        return commands
     } else if(q){
         const data = await utils.getStateStats(q)
         if(data[0]){
@@ -30,4 +40,8 @@ const returnRes = async(q) => {
     }
 }
 
+// returnRes('mh-').then(res => console.log(res)).catch(E => console.log(E))
+
 module.exports = {returnRes}
+
+// LOT OF DRY VIOLATIONS NEED TO REFACTOR

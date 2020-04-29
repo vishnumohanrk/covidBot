@@ -14,6 +14,19 @@ const getStateStats = (stateVal) => {
     })
 }
 
+const getAllDist = (stateVal) => {
+    const state = stateVal.trim()
+    return new Promise((resolve,reject) => {
+        const code = state.length == 2 ? state.toUpperCase() : stateCodes[state.replace(/\s+/g, '').toLowerCase()]
+        request.get({
+            uri: 'https://api.covid19india.org/v2/state_district_wise.json',
+            json: true,
+        })
+        .then(res => resolve(!res.filter(i => i.statecode == code)[0] ? [] : res.filter(i => i.statecode == code)[0].districtData))
+        .catch(e => reject(e))
+    })
+}
+
 const getDistrictStats = (districtVal, stateVal) => {
     const district = districtVal.trim()
     const state = stateVal.trim()
@@ -40,4 +53,4 @@ const topN = (n) => {
     })
 }
 
-module.exports = {getStateStats, getDistrictStats, topN}
+module.exports = {getStateStats, getDistrictStats, topN, getAllDist}

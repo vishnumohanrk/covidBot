@@ -8,9 +8,15 @@ app.use(bodyParser.urlencoded({extended: true}))
 const port = process.env.PORT || 3000
 
 app.post('/whatsApp', (req,res) => {
-    const msg = new twiml
     commands.returnRes(req.body.Body)
     .then(data => {
+        if(data.length > 1600){
+            const msg1 = new twiml
+            msg1.message(data.split(',').slice(0,20).toString())
+            res.send(msg1.toString())
+            return res.end()
+        }
+        const msg = new twiml
         msg.message(data)
         res.send(msg.toString())
     })
