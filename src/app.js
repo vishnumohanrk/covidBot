@@ -1,26 +1,26 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const twiml = require('twilio').twiml.MessagingResponse
-const commands = require('./commands')
+const express = require('express');
+const bodyParser = require('body-parser');
+const twiml = require('twilio').twiml.MessagingResponse;
+const commands = require('./commands');
 
-const app = express()
-app.use(bodyParser.urlencoded({extended: true}))
-const port = process.env.PORT || 3000
+const app = express();
 
-app.post('/whatsApp', (req,res) => {
-    commands.returnRes(req.body.Body)
-    .then(data => {
-        if(data.length > 1600){
-            const msg1 = new twiml
-            msg1.message(data.split(',').slice(0,20).toString())
-            res.send(msg1.toString())
-            return res.end()
-        }
-        const msg = new twiml
-        msg.message(data)
-        res.send(msg.toString())
-    })
-    .catch(e => console.log(e))
-})
+const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`Running on PORT:${port}`))
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post('/whatsApp', async (req, res) => {
+    const data = await commands.returnResponse(req.body.Body);
+
+    if (data.toString().length > 1600) {
+        const msg1 = new twiml();
+        msg1.message(data.slice(0, 20).toString());
+        return res.send(msg1.toString());
+    }
+
+    const msg = new twiml();
+    msg.message(data.toString());
+    return res.send(msg.toString());
+});
+
+app.listen(port, () => console.log(`Running on PORT:${port}`));

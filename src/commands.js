@@ -1,47 +1,50 @@
-const utils = require('./utils/req')
+const utils = require('./utils/APIresponse');
 
-const commands = 'State Name or State Code,\nlike this:MH or Maharashtra.\nDistrict Name and state name separated by comma,\nlike this: Chennai, Tamil Nadu\nTop -followed by a number'
+const usage = 'Try Again'; // spelling invlaid request
 
-const returnRes = async(q) => {
-    if(q.toLowerCase() === 'commands'){
-        return commands
-    } else if (q.includes(',')){
-        const splitted = q.split(',')
-        const data = await utils.getDistrictStats(splitted[0], splitted[1])
-        if(data[0]){
-            return `State: ${splitted[1]}\nDistrict: ${data[0].district}\nRECOVERED: ${data[0].recovered}\nACTIVE: ${data[0].active}\nCONFIRMED: ${data[0].confirmed}`
+const returnResponse = async q => {
+    const query = q.trim().toLowerCase();
+
+    if (query.includes(',')) {
+        const querySplit = query.split(',');
+
+        try {
+            const response = await utils.getDistrictStats(querySplit[0], querySplit[1]);
+            return utils.distStatsString(response);
+        } catch (e) {
+            return usage;
         }
-        return commands
-    } else if(q.toLowerCase().includes('top')){
-        const n = q.match(/\d+/g)
-        if(n){
-            const data = await utils.topN(Number(n[0]))
-            const arr = []
-            data.forEach(i => arr.push(`State: ${i.state}\nAS OF ${i.lastupdatedtime}\nRECOVERED: ${i.recovered}\nACTIVE: ${i.active}\nCONFIRMED: ${i.confirmed}\n\n`))
-            return arr.toString()
-        }
-        return commands
-    } else if(q.toLowerCase().includes('-')){
-        const data = await utils.getAllDist(q.slice(0, q.toLowerCase().indexOf('-')))
-        const state = await utils.getStateStats(q.slice(0, q.toLowerCase().indexOf('-')))
-        if(data.length){
-            const arr = []
-            arr.push(`State: ${state[0].state}\nAS OF ${state[0].lastupdatedtime}\nRECOVERED: ${state[0].recovered}\nACTIVE: ${state[0].active}\nCONFIRMED: ${state[0].confirmed}\n`)
-            data.forEach(i => arr.push(`\nDistrict: ${i.district}\nRECOVERED: ${i.recovered}\nACTIVE: ${i.active}\nCONFIRMED: ${i.confirmed}\n`))
-            return arr.toString()
-        }
-        return commands
-    } else if(q){
-        const data = await utils.getStateStats(q)
-        if(data[0]){
-            return `State: ${data[0].state}\nAS OF ${data[0].lastupdatedtime}\nRECOVERED: ${data[0].recovered}\nACTIVE: ${data[0].active}\nCONFIRMED: ${data[0].confirmed}`
-        }
-        return commands
     }
-}
 
-// returnRes('mh-').then(res => console.log(res)).catch(E => console.log(E))
+    if (query.includes('-')) {
+        const param = query.slice(0, q.indexOf('-'));
 
-module.exports = {returnRes}
+        try {
+            const districts = await utils.getAllDist(param);
+            const data = districts.map(i => utils.distStatsString(i));
+            return data;
+        } catch (e) {
+            return usage;
+        }
+    }
 
-// LOT OF DRY VIOLATIONS NEED TO REFACTOR
+    if (query.includes('top')) {
+        try {
+            const n = Number(query.match(/\d+/g)[0]);
+            const response = await utils.getTop();
+            const data = response.map(i => utils.stateStatsString(i));
+            return data.slice(1, n + 1);
+        } catch (e) {
+            return usage;
+        }
+    }
+
+    try {
+        const response = await utils.getStateStats(query);
+        return utils.stateStatsString(response);
+    } catch (e) {
+        return usage;
+    }
+};
+
+module.exports = { returnResponse };
