@@ -1,6 +1,18 @@
 const utils = require('./utils/APIresponse');
 
-const usage = 'Try Again'; // spelling invlaid request
+const usage = `Usage:
+StateName or StateCode => To Get That State's Stats
+Example: TN or TamilNadu
+
+StateName or StateCode followed By hyphen(-) => To See 20 District Stats of that state
+Example: MH- or Maharashtra-
+
+District Name and StateName/Code separated by comma(,) => To get that particular District Stats
+Example: Bengaluru Urban, KA
+
+All/Ind/Total => To See Full Country Stats
+
+Suggestions/PRs => https://github.com/vishnumohanrk/covidBot`;
 
 const returnResponse = async q => {
     const query = q.trim().toLowerCase();
