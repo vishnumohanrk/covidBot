@@ -10,9 +10,7 @@ Example: MH- or Maharashtra-
 District Name and StateName/Code separated by comma(,) => To get that particular District Stats
 Example: Bengaluru Urban, KA
 
-All/Ind/Total => To See Full Country Stats
-
-Suggestions/PRs => https://github.com/vishnumohanrk/covidBot`;
+All/Ind/Total => To See Full Country Stats`;
 
 const returnResponse = async q => {
     const query = q.trim().toLowerCase();
