@@ -8,7 +8,10 @@ StateName or StateCode followed By hyphen(-) => To See 20 District Stats of that
 Example: MH- or Maharashtra-
 
 District Name and StateName/Code separated by comma(,) => To get that particular District Stats
-Example: Bengaluru Urban, KA
+Example: Bengaluru Urban, KA, Darjeeling, West Bengal
+
+Top followed by a number to see Top N affected states.
+Example: Top 5
 
 All/Ind/Total => To See Full Country Stats`;
 

@@ -1,19 +1,29 @@
-<p>Get Covid Stats from WhatsApp</p>
+##Get Covid Stats from WhatsApp
 
 https://wa.me/14155238886?text=join%20forest-manner
 
-</p>API: <a href="https://api.covid19india.org/">Covid19India.org</a></p>
-<p><a href="https://www.twilio.com/">Twilio</a><p>
+-   Click On the Link.
+-   Send 'join forest-manner'
+-   Save the number
 
-<p>Available Commands:</p>
-<li>Full State name or State Code(Both Case insensitive) to get that state stats</li>
-<li>All, India to get entire Country Stats</li>
-<li>District, State name or state code separated by comma</li>
-<li>Top followed by a number</li>
-<li>Full State name or State Code followed by - to see first 20 districts stats of that state</li>
-<br>
-<p>Screenshots</p>
+###Available Commands:
 
-<img src="./screenshots/ss1.jpg" width="300" height="650">
-<img src="./screenshots/ss2.jpg" width="300" height="650">
-<img src="./screenshots/ss3.jpg" width="300" height="650">
+-   StateName or StateCode => To Get That State's Stats
+-   StateName or StateCode followed By hyphen(-) => To See 20 District Stats of that state
+-   District Name and StateName/Code separated by comma(,) => To get that particular District Stats
+-   Top followed by a number to see Top N affected states.
+-   All/Ind/Total => To See Full Country Stats
+
+###Examples
+
+<img src="./screenshots/1.jpg" height="500">
+<img src="./screenshots/2.jpg" height="500">
+<img src="./screenshots/3.jpg" height="500">
+<img src="./screenshots/4.jpg" height="500">
+<img src="./screenshots/5.jpg" height="500">
+<img src="./screenshots/6.jpg" height="500">
+
+###API
+
+-   [Covid19-India](https://api.covid19india.org/)
+-   [Twilio](https://www.twilio.com/)
