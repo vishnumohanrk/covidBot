@@ -1,5 +1,7 @@
 ## Get Covid19 Stats from WhatsApp
 
+### Usage
+
 https://wa.me/14155238886?text=join%20forest-manner
 
 -   Click On the Link.
@@ -13,6 +15,8 @@ https://wa.me/14155238886?text=join%20forest-manner
 -   District Name and StateName/Code separated by comma(,) => To get that particular District Stats
 -   Top followed by a number to see Top N affected states.
 -   All/Ind/Total => To See Full Country Stats
+
+#### Stats Available only For India
 
 ### Examples
 
