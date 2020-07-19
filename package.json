@@ -21,7 +21,7 @@
     "express": "^4.17.1",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
-    "twilio": "^3.42.2"
+    "twilio": "^3.48.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
