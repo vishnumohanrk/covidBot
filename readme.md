@@ -2,14 +2,6 @@
 
 *Note: Stats Available only For India*
 
-### Usage
-
-https://wa.me/14155238886?text=join%20forest-manner
-
--   Click On the Link.
--   Send 'join forest-manner'
--   Save the number
-
 ### Available Commands:
 
 -   StateName or StateCode => To Get That State's Stats
